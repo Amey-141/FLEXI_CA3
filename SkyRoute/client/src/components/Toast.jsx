@@ -1,0 +1,1 @@
+import { CheckCircle2, XCircle, X } from 'lucide-react'; export default function Toast({ toast, clear }) { if(!toast) return null; return <div className={`toast ${toast.type||'success'}`}>{toast.type==='error'?<XCircle/>:<CheckCircle2/>}<span>{toast.message}</span><button onClick={clear}><X size={17}/></button></div>; }

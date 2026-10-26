@@ -1,0 +1,1 @@
+import { Router } from 'express'; import { body } from 'express-validator'; import { subscribe } from '../controllers/newsletter.controller.js'; import { validate } from '../middleware/validate.middleware.js'; const router = Router(); router.post('/subscribe', [body('email').isEmail().withMessage('Enter a valid email.')], validate, subscribe); export default router;

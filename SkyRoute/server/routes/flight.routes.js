@@ -1,0 +1,1 @@
+import { Router } from 'express'; import { getFlight, listFlights, searchFlights, status } from '../controllers/flight.controller.js'; const router = Router(); router.get('/search', searchFlights); router.get('/status', status); router.get('/:id', getFlight); router.get('/', listFlights); export default router;

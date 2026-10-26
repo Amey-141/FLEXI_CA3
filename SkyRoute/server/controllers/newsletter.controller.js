@@ -1,0 +1,2 @@
+import NewsletterSubscriber from '../models/NewsletterSubscriber.js'; import { asyncHandler } from '../utils/appError.js';
+export const subscribe = asyncHandler(async (req, res) => { await NewsletterSubscriber.updateOne({ email: req.body.email.toLowerCase() }, { $setOnInsert: { email: req.body.email.toLowerCase() } }, { upsert: true }); res.status(201).json({ success: true, message: 'You are on the SkyRoute list.' }); });

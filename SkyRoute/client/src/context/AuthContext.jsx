@@ -1,0 +1,3 @@
+import { createContext, useContext, useEffect, useState } from 'react'; import api from '../services/api';
+const AuthContext = createContext(); export const useAuth = () => useContext(AuthContext);
+export function AuthProvider({ children }) { const [user,setUser]=useState(null),[loading,setLoading]=useState(true); useEffect(()=>{api.get('/auth/me').then(r=>setUser(r.data.user)).catch(()=>{}).finally(()=>setLoading(false));},[]); const value={user,loading,setUser,logout:async()=>{await api.post('/auth/logout');setUser(null);}}; return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>; }

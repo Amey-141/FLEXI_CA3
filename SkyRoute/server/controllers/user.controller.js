@@ -1,0 +1,3 @@
+import User from '../models/User.js'; import { AppError, asyncHandler } from '../utils/appError.js';
+export const profile = asyncHandler(async (req, res) => { const user = await User.findById(req.user.id); res.json({ success: true, user: { id: user._id, name: user.name, email: user.email, phone: user.phone } }); });
+export const updateProfile = asyncHandler(async (req, res) => { const user = await User.findByIdAndUpdate(req.user.id, { name: req.body.name, phone: req.body.phone }, { new: true, runValidators: true }); if (!user) throw new AppError('User not found.', 404); res.json({ success: true, user: { id: user._id, name: user.name, email: user.email, phone: user.phone } }); });
